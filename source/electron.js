@@ -12,7 +12,7 @@ function createWindow() {
   var windowConfig = {};
 
   windowConfig.frame = false;
-  windowConfig.width = 500;
+  windowConfig.width = 400;
   windowConfig.height = 700;
   windowConfig.title = "Mycroft UI v0.0";
 
