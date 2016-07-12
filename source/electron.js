@@ -11,15 +11,13 @@ function createWindow() {
 
   var windowConfig = {};
 
-  if (process.argv[2] === 'mirror') {
-    windowConfig.title = "Magic Mycroft Mirror";
-    windowConfig.fullscreen = true;
-    windowConfig.kiosk = true;
-  } else {
-    windowConfig.frame = false;
-    windowConfig.width = 500;
-    windowConfig.height = 700;
-    windowConfig.title = "Mycroft UI v0.0";
+  windowConfig.frame = false;
+  windowConfig.width = 500;
+  windowConfig.height = 700;
+  windowConfig.title = "Mycroft UI v0.0";
+
+  if (process.argv[2] === 'test') {
+    windowConfig.frame = true;
   }
 
 

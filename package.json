@@ -4,14 +4,8 @@
   "description": "Magic Mycroft Mirror",
   "main": "./build/electron.js",
   "scripts": {
-    "test": "webpack-dev-server",
-    "start": "webpack && electron . desktop manual",
-    "start-desktop":"webpack && electron . desktop manual",
-    "start-desktop-auto":"webpack && electron . desktop auto",
-    "start-desktop-manual":"webpack && electron . desktop manual",
-    "start-mirror":"webpack && electron . mirror auto",
-    "start-mirror-auto":"webpack && electron . mirror auto",
-    "start-mirror-manual":"webpack && electron . mirror manual"
+    "test": "webpack && electron . test",
+    "start": "webpack && electron ."
   },
   "repository": {
     "type": "git",

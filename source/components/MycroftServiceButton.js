@@ -3,6 +3,8 @@ var React = require('react');
 var spawn = require('child_process').spawn;
 var exec = require('child_process').exec;
 
+var MycroftSkillsParser = require('./MycroftSkillsParser.js');
+
 var config = require('../config.json');
 
 var mycroftCoreDir = config.paths.mycroftCoreDir//'/home/josh/mycroft-core';
@@ -14,11 +16,16 @@ module.exports = React.createClass({
 
   componentDidMount: function() {
   },
-
   getInitialState: function() {
     return {
       buttonType: 'Start',
-      PID: 0
+      PID: 0,
+      service: {
+        name: this.props.ServiceName,
+        stdout: '',
+        stderr: '',
+        stdin: ''
+      }
     };
   },
   handleClick: function() {
@@ -46,21 +53,27 @@ module.exports = React.createClass({
     console.log('Created process with PID:' + child.pid);
 
     child.stdout.on('data', function(data){
-        console.log('stdout-' + name + ':'+data);
-    });
+        var newState = $.extend({}, this.state, {service: { 'name': this.props.ServiceName, 'stdout': data.toString().replace(/(\r\n|\n|\r)/gm,""), 'stderr': '' , 'stdin': ''  }});
+        this.setState(newState );
+    }.bind(this));;
 
     child.stderr.on('data', function(data){
+      var newState = $.extend( {}, this.state, {service: { 'name': this.props.ServiceName, 'stdout': '', 'stderr': data.toString().replace(/(\r\n|\n|\r)/gm,""), 'stdin': ''  }});
+      this.setState(newState );
+
       if (new String("Terminated").valueOf() == new String(data.toString().replace(/(\r\n|\n|\r)/gm,"")).valueOf()) {
-        this.setState({buttonType: 'Start', PID: 0});
-      } else {
-        console.log('stderr-' + name + ':'+data);
+        var newState = $.extend( {}, this.state, {buttonType: 'Start', PID: 0});
+        this.setState(newState );
       }
     }.bind(this));
 
     child.stdin.on('data', function(data){
-    });
+      var newState = $.extend( {}, this.state, {service: { 'name': this.props.ServiceName, 'stdout': '', 'stderr': '' ,'stdin': data.toString().replace(/(\r\n|\n|\r)/gm,"") }});
+      this.setState(newState );
+    }.bind(this));
 
-    this.setState({buttonType: 'Stop', PID: child.pid});
+    var newState = $.extend( {}, this.state, {buttonType: 'Stop', PID: child.pid});
+    this.setState(newState );
   },
 
   stopService: function() {
@@ -87,7 +100,10 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      <button type="button" onClick={this.handleClick} className="btn btn-default col-xs-12 col-md-4">---{this.state.buttonType} {this.props.ServiceName} service [{this.state.PID}]---</button>
+      <div>
+        <button type="button" onClick={this.handleClick} className="btn btn-default col-xs-12 col-md-4">---{this.state.buttonType} {this.props.ServiceName} service [{this.state.PID}]---</button>
+        <MycroftSkillsParser serviceOutput={this.state.service}/>
+      </div>
     );
   }
 });
