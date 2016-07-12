@@ -2,6 +2,8 @@ const electron = require('electron');
 const {app} = electron;
 
 const {BrowserWindow} = electron;
+const {ipcMain} = require('electron');
+
 
 let win;
 
@@ -24,6 +26,18 @@ function createWindow() {
   win = new BrowserWindow( windowConfig );
 
   win.loadURL('file://'+__dirname+'/index.html');
+
+  ipcMain.on('show-prefs', function () {
+    var googleWindow = new BrowserWindow({
+      width: 400,
+      height: 400,
+      show: false
+    })
+
+    googleWindow.loadURL('http://www.google.com');
+
+    googleWindow.show();
+  })
 
 };
 

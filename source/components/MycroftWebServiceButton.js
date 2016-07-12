@@ -1,5 +1,5 @@
 var React = require('react');
-
+var socket;
 module.exports = React.createClass({
 
   getInitialState: function() {
@@ -10,8 +10,7 @@ module.exports = React.createClass({
     if (this.state.buttonType === 'Connect') {
       this.connectToService();
     } else {
-      //this.disconnectFromService();
-      console.log('ToDo: write clean disconnect method');
+      this.disconnectFromService();
     }
   },
 
@@ -19,19 +18,24 @@ module.exports = React.createClass({
     if(!("WebSocket" in window)){
       window.alert('Oh no, you need a browser that supports WebSockets');
     }else{
-      var socket = new WebSocket("ws://localhost:8000/events/ws");
+      this.socket = new WebSocket("ws://localhost:8000/events/ws");
 
-      socket.onopen = function(){
+      this.socket.onopen = function(){
         console.log("Socket has been opened");
         this.setState({buttonType: 'Disconnect'});
       }.bind(this)
 
-      socket.onmessage = function(event){
+      this.socket.onmessage = function(event){
         this.sendMessage(event);
       }.bind(this)
     };
   },
+  disconnectFromService: function () {
+    this.socket.close();
+    console.log("Socket has been closed");
+    this.setState({buttonType: 'Connect'});
 
+  },
   sendMessage: function(event){
     this.props.onMessage(event);
   },

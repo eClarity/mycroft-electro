@@ -39,7 +39,7 @@ module.exports = {
     contentBase: "./build",
     hot: true
   },
-  target: 'node',
+  target: 'atom',
   plugins: [
         new CopyWebpackPlugin([
           { from: './source/electron.js' },
@@ -55,5 +55,4 @@ module.exports = {
           copyUnmodified: true
         }
       )]
-
 };
