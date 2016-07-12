@@ -52,6 +52,8 @@ module.exports = React.createClass({
     child.stderr.on('data', function(data){
       if (new String("Terminated").valueOf() == new String(data.toString().replace(/(\r\n|\n|\r)/gm,"")).valueOf()) {
         this.setState({buttonType: 'Start', PID: 0});
+      } else {
+        console.log('stderr-' + name + ':'+data);
       }
     }.bind(this));
 
