@@ -1,0 +1,3 @@
+[submodule "source/plugins"]
+	path = source/plugins
+	url = https://github.com/joshymcd/mycroft-electro-plugins.git
