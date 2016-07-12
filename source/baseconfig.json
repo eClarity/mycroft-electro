@@ -13,6 +13,6 @@
   },
   "paths":{
     "mycroftCoreDir":"/home/pi/mycroft-core",
-    "installDir":"/home/pi/mycroft-magic-mirror"
+    "installDir":"/home/pi/mycroft-electro"
   }
 }
