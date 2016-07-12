@@ -1,14 +1,9 @@
 {
-  "pluginsMirror":{
-    "PluginTop" : null,
-    "PluginLeft" : "Clock",
-    "PluginMid" : null,
-    "PluginRight" : null,
-    "PluginBottom" : "MessageLog"
-  },
-  "pluginsDesktop":{
+  "plugins":{
     "PluginTop" : "Clock",
+    "PluginLeft" : null,
     "PluginMid" : "MessageLog",
+    "PluginRight" : null,
     "PluginBottom" : "ChatBox"
   },
   "paths":{
