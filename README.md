@@ -3,7 +3,7 @@ A UI for Mycroft designed for a magic mirror also with a desktop mode
 
 modular using reactjs and can handle plugins
 
-*note* before starting edit config.json with your path to this clone and your mycroft-core folder
+####`*note* before starting copy config.json.example to config.json and edit with your path to this clone and your mycroft-core folder`
 
 to run npm install && npm start
 
