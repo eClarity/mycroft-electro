@@ -5,7 +5,11 @@ var MycroftServiceButton = require('./MycroftServiceButton.js');
 var MycroftWebServiceButton = require('./MycroftWebServiceButton.js');
 
 module.exports = React.createClass({
-
+  getInitialState: function() {
+     return {
+        'config': this.props.config
+      };
+  },
   componentDidMount: function() {
         $("#btn_admin").css({'background-color': 'Transparent','background-repeat': 'no-repeat','border': 'none', 'outline':'none' });
   },
@@ -22,9 +26,9 @@ module.exports = React.createClass({
         </div>
         <div id="OptionsDiv" className="collapse top-buffer ">
           <div className="row  top-buffer " >
-            <MycroftServiceButton ServiceName="service" />
-            <MycroftServiceButton ServiceName="voice" />
-            <MycroftServiceButton ServiceName="skills" />
+            <MycroftServiceButton config={this.state.config} ServiceName="service" />
+            <MycroftServiceButton config={this.state.config} ServiceName="voice" />
+            <MycroftServiceButton config={this.state.config} ServiceName="skills" />
           </div>
           <div className="row top-buffer">
             <MycroftWebServiceButton onMessage={this.sendMessage} />

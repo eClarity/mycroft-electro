@@ -3,6 +3,8 @@ var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 
+
+
 module.exports = {
   context: __dirname,
   entry: "./source/main.js",
@@ -43,7 +45,7 @@ module.exports = {
   plugins: [
         new CopyWebpackPlugin([
           { from: './source/electron.js' },
-          { from: './source/assets/scripts/kill_descendant_processes.sh'}
+          { from: './source/assets/scripts/kill_descendant_processes.sh'} 
         ],
         {
           ignore: [

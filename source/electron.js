@@ -4,13 +4,10 @@ const {app} = electron;
 const {BrowserWindow} = electron;
 const {ipcMain} = require('electron');
 
-
-let win;
-
 global.sharedObject = {args: process.argv}
 
-function createWindow() {
-
+function createMainWindow() {
+  var win;
   var windowConfig = {};
 
   windowConfig.frame = false;
@@ -20,25 +17,27 @@ function createWindow() {
 
   if (process.argv[2] === 'test') {
     windowConfig.frame = true;
+    windowConfig.width = 800;
   }
-
 
   win = new BrowserWindow( windowConfig );
 
   win.loadURL('file://'+__dirname+'/index.html');
-
-  ipcMain.on('show-prefs', function () {
-    var googleWindow = new BrowserWindow({
-      width: 400,
-      height: 400,
-      show: false
-    })
-
-    googleWindow.loadURL('http://www.google.com');
-
-    googleWindow.show();
-  })
-
 };
 
-app.on('ready', createWindow);
+app.on('ready', function () {
+  createMainWindow();
+
+});
+
+ipcMain.on('show-google', function () {
+  var googleWindow = new BrowserWindow({
+    width: 400,
+    height: 400,
+    show: false
+  })
+
+  googleWindow.loadURL('http://www.google.com');
+
+  googleWindow.show();
+})

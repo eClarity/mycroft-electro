@@ -5,18 +5,19 @@ var exec = require('child_process').exec;
 
 var MycroftSkillsParser = require('./MycroftSkillsParser.js');
 
-var config = require('../config.json');
 
-var mycroftCoreDir = config.paths.mycroftCoreDir//'/home/josh/mycroft-core';
-var installDir = config.paths.installDir //'/home/josh/mycroft-magic-mirror';
-
-
+var mycroftCoreDir = '';
+var installDir = '';
 
 module.exports = React.createClass({
 
   componentDidMount: function() {
   },
   getInitialState: function() {
+
+    mycroftCoreDir = this.props.config.paths.mycroftCoreDir//'/home/josh/mycroft-core';
+    installDir = this.props.config.paths.installDir //'/home/josh/mycroft-magic-mirror';
+
     return {
       buttonType: 'Start',
       PID: 0,
@@ -28,6 +29,7 @@ module.exports = React.createClass({
       }
     };
   },
+  
   handleClick: function() {
     if (this.state.buttonType === 'Start') {
       console.log('starting service');
