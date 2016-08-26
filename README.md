@@ -11,11 +11,15 @@ to run npm install && npm start
 2. Have a working install of nodejs/npm (https://nodejs.org)
 3. Clone this repo
 ```$ git clone https://github.com/joshymcd/mycroft-magic-mirror.git```
-
-4. edit config.json in mycroft-magic-mirror folder with two paths to mycroft-core and this mycroft-magic-mirror (i will streamline this part);
+5. edit config.json in mycroft-magic-mirror folder with two paths to mycroft-core and this mycroft-magic-mirror (i will streamline this part);
   *NOTE* See below under 'config' section
-5. in terminal
+6. in terminal
     ```$ cd mycroft-magic-mirror```
+
+   (pull in modules (git submodules) )
+   
+    ```$ git submodule update --recursive```
+    
     ```$ npm install```
 
 ## Start-up scripts
