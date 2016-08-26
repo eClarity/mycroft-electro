@@ -34,9 +34,11 @@ There are a couple of ways to start up the UI
 ####Basic
 1. ``` npm start ```
 This runs the UI in Desktop & Manual Mode
-2. ``` npm run start-desktop ```
+2. ``` npm test ```
+This runs the UI in Desktop & Manual Mode with the main menu/toolbar avalible (so you can access chrome developer options and the console)
+3. ``` npm run start-desktop ```
 This runs the UI in Desktop & Manual Mode
-3. ``` npm run start-mirror ```
+4. ``` npm run start-mirror ```
 This runs the UI in Mirror & Auto Mode
 
 ####Other Startup Modes
