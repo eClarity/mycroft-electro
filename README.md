@@ -18,7 +18,7 @@ to run npm install && npm start
 
    (pull in modules (git submodules) )
    
-    ```$ git submodule update --recursive```
+    ```$ git submodule update --init --recursive```
     
     ```$ npm install```
 
